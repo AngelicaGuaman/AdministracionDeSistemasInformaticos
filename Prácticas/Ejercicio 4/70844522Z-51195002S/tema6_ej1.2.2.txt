@@ -1,0 +1,20 @@
+1.2 Configuración de NAT y una máquina como encaminador
+
+Configurar también la tabla de rutas de la máquina B para que sepa a dónde dirigir el tráfico externo. Hasta este punto toda la configuración que se pide debe ser temporal, es decir, al reinicar la máquina los cambios se perderán. 
+
+
+1) Configurar la tabla de rutas para la máquina B, para ello vamos a utilizar la herramienta route
+
+	Añadimos una entrada a la tabla de rutas dirigida por la red 0.0.0.0 que es la de salida por defecto con el gateway de la máquina A 192.168.100.2 a través de la interfaz eth1 que es la nueva que habíamos creado.
+
+	$ sudo route add -net 0.0.0.0 gw 192.168.100.2 eth1
+
+	Verificamos la tabla de ruta la nueva entrada y vemos la nueva entrada en la tabla de rutas.
+
+	$ sudo route -v
+
+2) comprobamos si la máquina B tiene acceso a internet
+
+	$ sudo traceroute fi.upm.es
+
+	Y podemos observar que por el primer nodo que pasa es de ASI2014

@@ -1,0 +1,27 @@
+1.4 OPCIONAL: Gestion de permisos de usuarios
+
+El usuario usuario1 no tiene autorización para realizar operaciones de administración
+del sistema. Ajuste la configuración de forma adecuada para que pueda ejecutar el
+mandato cat /etc/shadow como si fuera root. Explique los pasos realizados e incluya
+los mandatos necesarios.
+
+Para poder modificar el fichero /etc/sudoers utilizamos el mandato visudo:
+
+ >> sudo visudo
+
+Añadimos en el fichero la linea:
+
+usuario1 ALL=(root) /bin/cat /etc/shadow
+
+Donde:
+
+El usuario "usuario1", en cualquier máquina "ALL" puede hacer  cat /etc/shadow
+
+Cambiamos a usuario1:
+
+>> su usuario1
+
+Finalmente ejecutaremos:
+
+>> sudo cat /etc/shadow
+

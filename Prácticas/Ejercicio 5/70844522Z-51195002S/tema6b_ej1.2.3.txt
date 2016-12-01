@@ -1,0 +1,19 @@
+Como root de la maquina cliente, intentar crear un fichero en el home de algun
+usuario. Explicar que es lo que sucede y por que. Cual es la opcion de exportacion en
+el servidor que puede cambiar el resultado y que esta directamente relacionada con el
+root y por que?
+
+-¿Que ocurre y Porqué? 
+No se puede crear el fichero.
+Por defecto, el usuario y los IDs de grupo del usuario root son 0.
+Root ubica el ID de usuario en 0 y el ID de grupo en 0 para los IDs de grupo y de usuario anónimos de manera que root en
+un cliente no posee privilegios de root en el servidor NFS.
+
+-¿Cual es la opcion de exportacion?
+La opción corresponde a no_root_squash, la cual indica que un usuario identificado como
+root tendrá acceso al directorio compartido sólo con privilegios de usuario anónimo.
+De esta forma se ha degradado al root al usuario local de privilegios mas bajos protegiendo
+así los archivos en el servidor NFS. Esta opción se conoce también con el nombre de
+'aplastamiento del root'. Para el resto de usuarios se intenta conservar su UID y GID en el servidor.
+
+.

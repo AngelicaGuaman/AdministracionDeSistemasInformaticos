@@ -1,0 +1,16 @@
+El sistema que hemos configurado no propociona ni autenticacion ni cifrado (basicamente
+es bastante poco fiable para implantar en cualquier red en la que los usuarios no sean
+fiables, por ejemplo, un campus universitario). ¿Que sistema deberia configurarse para
+poder proporcionar estos servicios adicionales?
+
+Los TCP wrappers leen los archivos /etc/hosts.allow y /etc/hosts.deny para determinar
+si a un cliente particular o red tiene acceso o no al servicio NFS.
+Lo primero que se comprueba es si el cliente tiene acceso mediante los TCP wrappers.
+Una vez que al cliente se le permite acceso gracias a un TCP wrapper, el servidor NFS
+recurre a su archivo de configuración (/etc/exports), para determinar si el cliente
+tiene suficientes privilegios para acceder a los sistemas de archivos exportados.
+Una vez otorgado el acceso, todas las operaciones de archivos y de directorios están
+disponibles para el usuario.
+
+Podemos establecer un poco más de seguridad usando /etc/hosts.allow y /etc/hosts.deny
+para especificar qué ordenadores de la red pueden usar los servicios del servidor nfs. 

@@ -1,0 +1,11 @@
+
+2.4 Creación del sistema de ficheros y montaje
+	1. Para crear el sistema de ficheros ext4 hacemos lo siguiente en modo root:
+	>>mkfs.ext4 /dev/md0
+
+	2.Para montar la RAID hacemos lo siguiente en modo root:
+	>>mount /dev/md0 /mnt
+
+	3.Para crear el archivo prueba en /mnt hacemos lo siguiente en modo root:
+	>>cd /mnt
+	>>dd if=/dev/zero of=prueba bs=1024 count =262144

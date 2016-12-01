@@ -1,0 +1,24 @@
+En el cliente cambiar la configuracion de NIS para que la maquina sea cliente y
+establecer el servidor de NIS que usar con la IP de la maquina. A continuacion,
+modificar la configuracion para que los ficheros passwd, shadow y group sean consultados
+primero en el servidor NIS y luego localmente. Rearrancar el servicio de NIS.
+Indicarlas modicaciones y mandatos empleados.
+
+Especificar la localizacion del servidor NIS:
+$ sudo nano /etc/yp.conf
+
+	ypserver 192.168.100.2
+
+
+-Modicar el archivo /etc/nsswitch.conf para que busque passwd,
+group y shadow por NIS:
+$ sudo nano /etc/nsswitch.conf
+
+passwd: files nis
+group: files nis		
+shadow: files nis
+
+-Volver a arrancar servicio NIS
+
+# /etc/init.d/nis stop
+# /etc/init.d/nis start

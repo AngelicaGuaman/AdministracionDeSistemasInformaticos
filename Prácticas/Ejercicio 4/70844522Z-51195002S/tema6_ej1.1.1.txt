@@ -1,0 +1,36 @@
+1.1 Configuracion de la LAN privada
+
+Se nos pide que configuremos la red entre las dos maquinas dentro de una red privada y que se pueda hacer ping de una a otra.
+
+1) Comprobamos las interfaces de red a las que está conectada la máquina, utilizando el mandato ifconfig
+
+	$ sudo ifconfig -a
+
+Nos muestra que está conectada a tres interfaces que son:
+	- eth0: que es la interfaz de red por defecto con la que podemos tener acceso a internet desde nuestra maquina anfitrion.
+	- eth1: que es la nueva interfaz de red creada, con la que haremos la red privada.
+	- lo: red de loopback
+
+2) Configuracion de Ips para las máquinas, utilizamos la herramienta de ifconfig
+	
+	$ sudo ifconfig eth1 inet 192.168.100.2 netmask 255.255.255.0 (máquina A)
+
+	$ sudo ifconfig eth1 inet 192.168.100.3 netmask 255.255.255.0 (clon de máquina A)
+
+Estamos configurando la interfaz de red que hemos creado con anterioridad diciendo que se aplicará el protocolo inet (IPv4), una dirección ip válida para la red 192.168.100.0/24, en el caso de la máquina A le vamos a dar la ip 192.168.100.2 y el clon de la máquina A le vamos a dar la ip 192.168.100.3 y a través de la opción netmask le asignamos la máscara /24 que es 255.255.255.0
+
+3) Comprobamos que se ha aplicado el mandato correctamente utilizamos ifconfig
+
+	$ sudo ifconfig -a 
+
+4) hacemos ping entre las máquinas
+
+	$ sudo ping 192.168.100.2 (desde la clon de la maquina A)
+	$ sudo ping 192.168.100.3 (desde la maquina A)
+
+
+
+
+
+
+	

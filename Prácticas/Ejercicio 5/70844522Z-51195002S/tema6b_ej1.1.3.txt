@@ -1,0 +1,18 @@
+Añadir localhost al grupo de maquinas con acceso permitido al directorio exportado
+(modificando exports de nuevo) y comprobar que se puede montar el directorio
+exportado en cualquier directorio temporal.
+
+-Añadir localhost:
+$ sudo gedit /etc/exports
+
+	/home/nfs-exports 172.0.0.1/255.255.255.0(ro)
+
+-Reiniciar servidor NFS:
+$ sudo /etc/init.d/nfs-kernel-server restart
+
+-Comprobamos que se puede montar el directorio exportado en cualquier directorio temporal:
+Para ello creamos el directorio /mnt/temporal:
+$sudo mkdir /mnt/temporal
+
+-Montamos el directorio:
+# mount 192.168.100.2:/home/nfs-exports /mnt/temporal 

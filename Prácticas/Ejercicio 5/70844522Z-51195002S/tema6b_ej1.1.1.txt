@@ -1,0 +1,25 @@
+1.1)
+Para congurar el servidor de NFS es necesario instalar los paquetes nfs-common y nfs-kernel-sever.
+Crear un directorio llamado nfs-exports dentro de /home y mover el home de todos los usuarios a dicho
+directorio (sera necesario modifcar passwd para que al hacer login local en el servidor no se produzca
+ningun error). Describir la secuencia de mandatos y acciones empleada.
+
+-Instalación de los paquetes nfs-common y nfs-kernel-sever:
+$ sudo -i
+# apt-get install nfs-common nfs-kernel-server
+
+-Crear directorio nfs-exports:
+$ sudo mkdir /home/nfs-exports
+
+-Mover el home de todos los usuarios a dicho directorio:
+Visualizar el fichero /etc/passwd en el que se encuentra información de todos los usuarios, en concreto
+en el penúltimo campo de cada linea se encuentra la dirección del home de cada usuario.
+Movemos cada home de usuario al directorio nfs-exports mediante lo siguiente:
+
+$ sudo cp -r dir_home_usuario /home/nfs-exports
+
+-Modificación de passwd:
+Cambiar la ruta de home de cada usuario por /home/nfs-exports
+
+
+

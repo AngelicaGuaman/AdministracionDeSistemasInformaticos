@@ -1,0 +1,6 @@
+
+2. Creación de un sistema RAID software
+
+2.1 Localización de dispositivos
+	Para localizar los ficheros especiales de los discos duros accedemos al directorio /dev  mediante “>> cd /dev”. 
+	Los ficheros especiales de los discos son sdc, sdd, sde y sdf.

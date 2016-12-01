@@ -1,0 +1,52 @@
+Cambiar el nombre de host de la segunda máquina virtual a ASI2014B y añadir donde corresponda las IPs estáticas de ambas máquinas para que la resolución de nombres funcione (ping ASI2014B desde ASI2014 y viceversa). Indicar qué ficheros de configuración han sido modificados y cómo
+
+1) Cambiar el nombre a la máquina B a ASI2014B utilizaremos el archivo /etc/hostname
+
+	$ sudo nano /etc/hostname
+
+2) comprobamos el nuevo nombre de la máquina
+
+	$ hostname
+
+	Y no se ha asignado el nuevo nombre
+
+	Por lo que pasamos a modificar el siguiente archivo en la máquina B /etc/hosts
+
+		127.0.0.1 	   localhost
+		127.0.0.1      ASI2014B
+		192.168.100.2  ASI2014
+
+		# The following lines are desirable for IPv6 capble hosts
+		::1 	localhost ip6-localhost ip6-loopback
+		ff02::1 ip6-allnodes
+		ff02::2 ip6-allrouters 
+		::1     ASI2014B #direccion ipv6 de la propia máquina
+		fe80::2 ASI2014  #dirección ipv6 para la maquina A
+
+	Máquina A
+
+		127.0.0.1 	   localhost
+		127.0.0.1      ASI2014
+		192.168.100.3  ASI2014B
+		
+		# The following lines are desirable for IPv6 capble hosts
+		::1 	localhost ip6-localhost ip6-loopback
+		ff02::1 ip6-allnodes
+		ff02::2 ip6-allrouters 
+		::1     ASI2014 #direccion ipv6 de la propia máquina
+		fe80::3 ASI2014B  #dirección ipv6 para la maquina B
+
+3) Comprobamos que hay conexión entre las máquinas
+
+Maquina A hace ping a la máquina B
+
+	$ sudo ping ASI2014B
+	$ sudo ping6 -I eth1 ASI2014B
+
+Maquina B hace ping a la máquina A
+
+	$ sudo ping ASI2014
+	$ sudo ping6 -I eth1 ASI2014
+
+
+

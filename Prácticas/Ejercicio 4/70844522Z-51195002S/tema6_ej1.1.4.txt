@@ -1,0 +1,25 @@
+Nos piden que la configuración sea permanente, ya que la del apartado anterior no lo es, porque cuando reiniciemos la máquina se perderá la configuración de esta.
+Para este apartado vamos a modificar el fichero /etc/network/interfaces.
+	
+	$ sudo nano /etc/network/interfaces
+
+1) Añadir líneas de configuración:
+
+	Con las siguientes líneas le diremos que para la interfaz de red eth1 aplicando el protocolo inet6 para ipv6 le decimos que sea estática, indicandole la dirección y la máscara de red.
+	
+	- Para la máquina A
+
+	# eth1 ipv6
+	iface eth1 inet6 static
+	address fe80::2
+	netmask 64		
+
+	- Para la máquina B
+
+	# eth1 ipv6
+	iface eth1 inet6 static
+	address fe80::3
+	netmask 64		
+
+
+	

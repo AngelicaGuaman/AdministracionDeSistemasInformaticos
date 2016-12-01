@@ -1,0 +1,9 @@
+A continuacion cambiar la configuracion de sistema para que el home remoto se monte
+sobre /home en el arranque (no pasa nada por montarlo encima del actual). Indicar que
+fichero se ha modificado y como.
+
+Se ha modificado el fichero /etc/fstab
+$sudo nano /etc/fstab
+	192.168.100.2:/home /home nfs rw,hard,intr 0 0
+
+

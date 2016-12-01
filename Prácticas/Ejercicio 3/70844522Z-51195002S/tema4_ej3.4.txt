@@ -1,0 +1,24 @@
+
+3.4 CreaciOn de volUmenes lOgicos
+
+	Creamos los dos volUmenes lOgicos en el grupo datagroup
+	$ sudo lvcreate --name vol1 --size 7G datagroup
+	$ sudo lvcreate --name vol2 --size 4G datagroup
+
+	1)	¿CuAnto espacio queda sin asignar en el grupo de volUmenes?
+
+		Utilizamos el mandato vgdisplay para ver el espacio sin asignar
+		$ sudo vgdisplay
+
+		Free PE/Size: 3.99 GiB
+	
+	2)	¿QuE ficheros especiales nos sirven para manejar cada uno de los volUmenes creados?
+
+	$ sudo lvdisplay 
+
+	Con el mandato lvdisplay podemos ver los volUmenes lOgicos creados con su respectiva informaciOn por ejemplo tamaNo, acceso al disco, etc
+
+	En este caso nos interesa LV Path de los volUmenes lOgicos, a los que podemos acceder como si fuesen particiones
+		/dev/datagroup/vol1
+		/dev/datagroup/vol2
+		

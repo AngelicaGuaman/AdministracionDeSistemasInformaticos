@@ -1,0 +1,16 @@
+Configurar el servidor para que exporte el directorio creado solo a la maquina B.
+Consultar la pagina de manual exports para ver la sintaxis y opciones usadas en
+/etc/exports. A continuacion reiniciar el servidor de NFS (no la maquina entera).
+Indicar la configuracion empleada, jutificando las opciones de exportacion escogidas y
+como se ha reiniciado el servidor.
+
+
+-Editar /etc/exports, el primer parametro es el directorio a exportar, a continuación la
+direccion ip y la mascara de la red a traves de la cual se realizará la conexión. Y la opción
+(ro) indica que el directorio se compartira solo en modo lectura.
+$ sudo nano /etc/exports
+
+	/home/nfs-exports 192.168.100.0/255.255.255.0(ro)
+
+-Reiniciar servidor NFS:
+$ sudo /etc/init.d/nfs-kernel-server restart

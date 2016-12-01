@@ -1,0 +1,30 @@
+
+2.2 Creación de un RAID 5 software
+	1. Primero nos hemos autenticado como root de la siguiente manera:
+	>>sudo su -
+
+	Para la creación del RAID 5 hemos hecho lo siguiente en modo root:
+	>> mdadm --create --level=5 --raid-devices=4 /dev/md0 /dev/sdc /dev/sdd /dev/sde /dev/sdf
+
+	El contenido del fichero /proc/mdstat antes de la creación del raid era:
+
+	Personalities:
+	Unused devices: <none>
+
+	Tras la creación del RAID 5 el contenido del fichero cambia a:
+
+	Personalities:	[raid6] [raid5] [raid4]
+	md0:		active (auto-read-only) raid5 sdf[5](S) sde[3] sdd[2] sdc[1]
+			6286848 blocks super 1.2 level 5, 512k chunk, algorithm 2 [4/3] [UUU_]
+
+	unused devices: <none>
+
+	2. Para obtener el tamaño del array hemos usado en modo root:
+	>>mdadm –detail /dev/md0
+
+	El tamaño del array es 6286848 (6 GB)
+	No es igual a la suma del tamaño de los 4 discos, porque RAID 5 proporciona un tamaño igual a
+	(n-1) veces el de los discos(2 GB * 3 = 6 GB), de esta manera brinda seguridad en los datos sin
+	sacrificar tanto el espacio disponible.
+
+	3. El nombre del dispositivo de disco virtual es ASI2014

@@ -1,0 +1,20 @@
+Hacer las modificaciones de configuración necesarias en cada máquina para que la configuración sea persistente. Para el caso de la reglas de iptables existen varios procedimientos, siendo uno de los más sencillos la adición de una regla up a la configuración de la interfaz en /etc/network/interfaces) para invocar los mandatos necesarios.
+
+Para comprobar que el encaminamiento funciona instalar con apt-get install el paquete openssh-server en ambas máquinas.
+
+
+Máquina A
+
+1) guardamos la configuración actual en el fichero /etc/iptable.conf para luego poder recuperarla
+
+	$ sudo iptable-save | sudo tee /etc/iptable.conf
+
+2) restauramos el valor guardado añadiendo la siguiente líena en /etc/network/interfaces
+ 
+	up iptables-restore < /etc/iptable.conf
+
+Con esto hacemos que la configuración se establezca en la tabla de ruta
+
+3) instalar 
+	
+	$sudo apt-get install openssh-server

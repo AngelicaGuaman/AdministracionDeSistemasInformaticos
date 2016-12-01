@@ -1,0 +1,21 @@
+En la máquina B, eliminar la configuración de la interfaz de red interna realizada en el ejercicio anterior (dejar sólo la línea que evita que NetworkManager maneje la interfaz o parar NetworkManager) y probar que el servidor responde a la petición usando dhclient. Posteriormente cambiar la configuración permanente de la interfaz para que trate de obtener una dirección IP por DHCP automáticamente al inicio del sistema.
+
+1) Borramos toda la configuración para la maquina B, utilizamos el fichero /etc/network/interfaces.
+Reiniciamos la máquina.
+
+2) Comprobamos que no existe esa configuracion 
+
+	$ sudo ifconfig -a
+
+3) Modificamos el fichero /etc/network/interfaces anadiendo la línea:
+
+	auto eth1
+	iface eth1 inet dhcp
+
+	Para que le asigne automáticamente las direcciones. reinciamos.
+
+4) comprobamos que el servidor DHCP responde 
+	
+	$ sudo dhclient -d eth1
+
+	Y en este caso se le ha asignado la ip 192.168.100.4, que pertenece al rango que le especificamos en el apartado anterior

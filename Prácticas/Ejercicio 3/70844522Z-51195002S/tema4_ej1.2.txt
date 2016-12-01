@@ -1,0 +1,67 @@
+1.2 Particionado
+
+	1) Comprobamos los discos del sistema disponibles y las particiones que ya están creadas, para ello vamos a utilizar la herramienta fdisk con el parámetro -l
+		$ sudo fdisk -l
+
+	2) Vamos a crear una particiOn primaria de 2G, comenzamos ejecutando fdisk sobre el disco a utilizar, en este caso serA
+		$ sudo fdisk /dev/sdb
+	Si pulsamos la letra "m" una vez ejecutado el mandato anterior podremos visualizar las distintas opciones sobre el disco
+		Como vamos a crear una particiOn pulsamos la letra "n", donde nos aparece la opciOn para poder crear una particiOn primaria o extendida.
+		Pulsamos la letra "p" para crear la particiOn primaria.
+		NUmero de particiones 1
+		Donde nos pide el tamaño de la particiOn
+			First Sector lo dejamos con el valor por defecto
+			Last sector le decimos que es +2G
+	Pulsamos la letra "p" donde podemos ver la tabla de particiones del disco /dev/sdb, donde podemos observar la particiOn que se ha creado.
+	Pulsamos la letra "m" otra vez para crear el segundo disco de 6G, que es a continución de la particiOn anterior.
+		Creamos el segundo disco.
+		Pulsamos la letra "n", donde nos aparece la opciOn para crear la particiOn primaria o extendida.
+		Pulsamos la letra "p" para crear la particiOn primaria.
+		NUmero de particiones 2, que es el valor por defecto
+		Donde nos pide el tamaño de la particiOn
+			First Sector lo dejamos con el valor por defecto
+			Last Sector le decimos que es +6G
+	Pulsamos la letra "p" donde podemos ver la tabla de particiones del disco /dev/sdb, y se pueden ver las 2 particiones creadas.
+
+	Guardamos la tabla de particiones pulsando la letra "w"
+
+
+	3) Resultado de la tabla de particiones
+	Device Boot     Start     End        Blocks     Id     System
+	/dev/sdb1       2048      4196351    2097152    83     Linux
+	/dev/sdb2       4196352   16779263   6291456    83     Linux
+	
+	El espacio restante empieza desde 16779264 a 20971519
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

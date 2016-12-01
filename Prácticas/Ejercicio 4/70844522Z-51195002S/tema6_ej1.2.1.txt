@@ -1,0 +1,24 @@
+1.2 Configuración de NAT y una máquina como encaminador
+
+Hacer que la primera de las máquinas virtuales pueda dar salida a la red externa a sí misma y a la otra máquina, solo para ipv4.
+
+En la máquina A, habilitar el reenvío de paquetes (IP forwarding) y configurar reglas de iptables para que se haga redirección del tráfico proveniente de la interfaz externa a la interna y enmascaramiento de la interna hacia la externa.
+
+1) Para redirigir el tráfico editaremos el fichero /etc/sysctl.conf descomentando la línea
+
+	#Uncomment the next line to enable packet forwarding for IPv4
+	net.ipv4.ip_forward=1
+
+	- Se recarga la nueva configuración utilizando el mandato sysctl
+	
+	$ sudo sysctl -p /etc/sysctl.conf  
+
+	- Para redirigir el tráfico de la máquina A ejecutaremos los siguientes mandatos
+
+		1. Regla para los paquetes de salida
+
+			$ sudo iptables -t nat -A POSTROUTING --out-interface eth0 -j MASQUERADE
+
+		2. Regla para los paquetes de entrada
+			$ sudo iptables -A FORWARD --in-interface eth1 -j ACCEPT
+

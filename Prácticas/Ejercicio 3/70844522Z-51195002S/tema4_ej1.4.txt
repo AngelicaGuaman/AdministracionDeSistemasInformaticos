@@ -1,0 +1,38 @@
+
+1.4 Montaje avanzado
+
+	1)	Crear el grupo alumnos y el directorio /home/alumnos
+		$ sudo addgroup alumnos
+		$ sudo mkdir /home/alumnos
+
+	2) 	Montar la particiOn B en el directorio /home/alumnos
+		$ sudo mount -t ext4 /dev/sdb2 /home/alumnos
+
+	3)	Cambiar a alumnos el grupo del directorio /home/alumnos
+		$ sudo chgrp alumnos /home/alumnos
+
+	4)	Crear el usuario alumno1. Debe pertenecer al grupo alumnos y su directorio home debe encontrarse en /home/alumnos/alumno1
+		$ sudo adduser alumno1 --home /home/alumnos/alumno1
+		$ sudo adduser alumno1 alumnos
+
+		FICHERO /etc/fstab
+
+		1)	La ruta al fichero de dispositivo (/dev/sdb2)
+		
+		2)	El segundo campo muestra el punto de montaje donde la particiOn debe montarse(/home/alumnos)
+
+		3)	El tercer campo muestra el sistema de ficheros usado por la particiOn (ext4)
+
+		4)	Opciones de montado que pueden ser multiples y se separan por comas (auto,exec,rw,gid=1001)
+			auto: La particiOn se montarA automAticamente al iniciar el sistema. 
+			exec: Esta opciOn la pondremos si tenemos interés en que podamos ejecutar binarios sobre la particiOn. Si por ejemplo vamos a programar y ejecutar sobre la particiOn serA necesario especificarla.
+			rw: Si especificamos esta opciOn estaremos permitiendo la lectura y escritura. Los permisos también deberán estar en concordancia con esta opciOn. 
+			gid: Similar a la opciOn anterior pero referente al grupo de usuarios. En este caso es para todos los usuarios del grupo alumnos. Donde 1001 es el UID de grupo.
+
+		5)	El quinto campo es usado por dump para determinar si la particiOn necesita ser volcada o no. La dejaremos en cero 
+
+		6)	El sexto campo es usado por fsck para determinar el orden en que los sistemas de ficheros deben ser comprobados si el sistema no se apagO correctamente. La particiOn raIz debe tener un 1 mientras que el resto puede tener 2 (o 0 en el caso en que la comprobaciOn del sistema de ficheros no sea necesaria).
+
+		Por lo que el fichero /etc/fstab contendrA la siguiente lInea:  /dev/sdb2 /home/alumnos ext4 auto,exec,rw,gid=1001 0 2.
+
+		

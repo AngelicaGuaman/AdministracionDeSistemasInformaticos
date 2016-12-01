@@ -1,0 +1,21 @@
+
+2.6 Reparación del raid
+	1. Para agregar el nuevo disco al RAID hemos hecho lo siguiente en modo root:
+	>>mdadm –manage  --add /dev/md0 /dev/sdf
+
+	2. Para monitorizar el proceso de recuperación del RAID en otro terminal ejecutamos:
+	>>cat /proc/mdstat
+
+	3. Para montar nuevamente el RAID en /mnt hacemos en modo root:
+	>>mount /dev/md0 /mnt
+
+	Accedemos a /mnt y encontramos en este al fichero prueba, el cual anteriormente había desaparecido.
+	Para incrementar el fichero prueba en 100 MB hacemos en mod root:
+	>>dd if=/dev/zero of=prueba bs=1024 count=364544
+
+	4.Para obtener información sobre el RAID ejecutamos en modo root:
+	>>mdadm –detail /dev/md0
+
+	Observamos que el tamaño del array es el que tenía cuando fueron agregados los 4 discos al RAID (6286848 o GB),
+	que el número de discos existentes es 4 y a su vez que los 4 dispositivos están activos, y por último,
+	el estado es clean, es decir, todo está correcto

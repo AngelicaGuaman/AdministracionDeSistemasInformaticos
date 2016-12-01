@@ -1,0 +1,11 @@
+1) Create una carpeta compartida en la configuracion de virtualbox
+	1.1) YO hice directamente que coja la carpeta de dropbox
+2) Maquina virtual
+	2.1) sudo su
+	2.2) cd /media/sf_Proyecto
+	2.3) ls -l 
+		Aqui puedes ver todos los fichero que tenemos en dropbox
+	2.4) Yo tengo un fichero en el escritorio el de configuracion_cluster.sh, aqui modifico todo y luego para que salga en dropbox lo que hago es 
+	cp /home/practicas/Escritorio/configuracion_cluster.sh /media/sf_Proyecto
+
+	Asi lo subes en dropbox

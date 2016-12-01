@@ -1,0 +1,8 @@
+
+1.1 IdentificaciOn del nuevo dispositivo
+
+	1) En el directorio /proc podemos ver informaciOn de los discos, particiones, interrupciones, etc.
+		$ cat /proc/partitions 
+			Podemos ver los discos y sus particiones, al disco nuevo le corresponde el sdb que tiene 10485760 B
+			
+	2) El nombre del fichero en el directorio /dev es /proc/sdb

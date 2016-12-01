@@ -1,0 +1,37 @@
+Pasos para realizar el script de la creación automática de usuarios:
+
+1)Comprobamos el número de parámetros que se le pasa al script
+
+	Si se le pasa más de 5 parámetros se le muestra un mensaje con el formato que se debe ejecutar el script. Por ejemplo: ./tema3_ej.1.1.sh prueba -n 2 -g grupo1 grupo2 
+
+	Si se ejecuta el script sin parámetros, mostramos un mensaje con el formato que se debe ejecutar el script. Por ejemplo: ./tema3_ej.1.1.sh
+
+	O si se le pasa el número de parámetros incompletos. Por ejemplo ./tema3_ej.1.1.sh prueba -n o ./tema3_ej.1.1.sh prueba -n 5 -g. 
+	
+Si no se le pasa correctamente los parámetros se sale del script. Y se pasa al siguiente punto (2).
+
+2) Si estamos en este punto es porque se le ha pasado correctamente el número de parámetros.
+
+	Guardamos el valor de los parámetros, para luego operar con sus valores.
+
+	Comprobamos el número de parámetros, para saber los valores por defecto que tenemos que tener en cuenta.
+
+	Si se le pasa 1 parámetro, que es el nombre_base, ponemos por defecto el num_usuario=5 y el nombre de grupo que sea igual al nombre_base
+
+	Si se le pasa 3 parámetros, ./tema3_ej.1.1.sh prueba -n 3, ponemos el valor por defecto del grupo que es el nombre_base.
+
+	Ahora comprobamos que el segundo y cuarto parámetro sea -n y -g respectivamente.
+
+3) Fijamos un contador hasta num_usuarios que puede ser el valor por defecto o el que se la haya pasado como parámetro.
+
+	Donde comprobamos si existe el grupo, para comprobar que el grupo existe utilizamos el mandato grep.
+	if grep -qw $GRUPO /etc/group
+	Donde buscamos en el fichero group si hay alguna coincidencia.
+
+	Sino existe creamos el grupo 
+
+	Y por ultimo añadimos los usuarios
+	sudo adduser $NOMBRE_BASE""$COUNTER --ingroup $GRUPO
+	Con la opcion --ingroup para añadirlo directamente al grupo que se le pasa como parámetro.
+
+	E incrementamos el contador, utilizamos el mandato let para la suma.

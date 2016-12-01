@@ -1,0 +1,13 @@
+
+3.1 LocalizaciOn de dispositivos
+
+	Con el siguiente mandato podemos ver todas las particiones que tiene la mAquina, junto con el tamaNo
+
+	$ sudo fdisk -l 
+	
+	Podemos ver que /dev/sdg, /dev/sdh, /dev/sdi tienen el tamaNo de 5G
+
+
+
+
+

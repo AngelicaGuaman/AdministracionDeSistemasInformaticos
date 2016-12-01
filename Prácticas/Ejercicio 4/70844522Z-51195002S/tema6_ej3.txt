@@ -1,0 +1,39 @@
+3 Configuración de SSH
+
+Configurar ssh para que sea posible iniciar sesión de una máquina a la otra y viceversa simplemente haciendo ssh host para el usuario practicas. Indicar la secuencia de mandatos empleada y los ficheros involucrados, explicando cada paso, se asume que el servidor de SSH queda instalado al finalizar el primer ejercicio).
+
+1) borramos el contenido del directorio .ssh utilizando el mandato 
+ 	$ sudo rm *
+
+ 	Ya que esta carpeta tiene toda información para hacer las conexiones como las claves publicas, privadas.
+
+2) creamos claves asimétricas en las máquinas, para la que usamos el mandato ssh-keygen 
+
+	Hemos tenido que cambiar el fichero /etc/hosts para cambiarle la ip de la maquina B en la maquina A, ya que tenía la ip antigua asociada
+
+	Ejecutamos el siguiente mandato con los datos por defecto
+	Guardamos la clave en la carpeta que nos dice por defecto y sin contraseña
+ 
+	$ sudo ssh-keygen 
+	
+	Nos ponemos como administrador
+
+	$ sudo -s
+
+	Maquina A
+		$ scp ~/.ssh/id_rsa.pub practicas@ASI2014B:./
+
+	Maquina B
+		$ scp ~/.ssh/id_rsa.pub practicas@ASI2014:./
+
+3) copiamos las claves en un fichero 
+
+	$ cat ~/.ssh/id_rsa.pub >> authorized
+
+	$ cat ~/.ssh/id_rsa.pub >> authorized
+
+	$ eval `ssh-agent`
+
+	$ ssh-add
+
+

@@ -1,0 +1,30 @@
+2 Configuración de DHCP
+
+En este apartado se llevará a cabo la configuración de un servidor de DHCP básico en la máquina A (que es la que tiene dos interfaces de red disponibles y configurada) y se modificará la configuración de B para que solicite una dirección dinámicamente a través de la interfaz que conecta ambas máquinas.
+En la máquina A instalar el paquete que proporciona el servidor DHCP del ISC. Editar la configuración para que se ponga disponible el servicio en la subred de la interfaz de red conectada a la LAN virtual interna. El rango de direcciones disponible debe ser 192.168.100.2 a 192.168.100.10, el router debe ser la máquina A, y los servidores DNS proporcionados por DHCP deben ser los mismos que los que utiliza la máquina A. No olvidar indicar en la configuración (/etc/default/isc-dhcp-server) cuál es la interfaz en la que el servidor debe estar disponible.
+Tras hacer los cambios, reiniciar el servidor para que se apliquen las modificaciones. Indicar qué modificaciones se han hecho en los ficheros de configuración y cómo se ha reiniciado el servicio.
+
+
+1) instalamos el paquete isc-dhcp-server 
+
+	$ sudo apt-get install isc-dhcp-server 
+
+2) accedemos al fichero de configuración /etc/default/isc-dhcp-server para decirle la puerta de interfaz a la que queremos que proporciones el servicio DHCP, en este caso será la eth1
+
+	INTERFACES="eth1"
+
+3) Modificamos el fichero /etc/dhcp/dhcp.conf con la siguientes líneas:
+
+	subnet 192.168.100.0 netmask 255.255.255.0 {
+	  range 192.168.100.2 192.168.100.10;
+	  option routers 192.168.100.2;
+	}
+
+	Donde le decimos la red, la mascara, y las máquinas a las que prestará servicio 
+
+4) reiniciamos el servicio DHCP
+
+	$ sudo service isc-dhcp-server 
+
+
+

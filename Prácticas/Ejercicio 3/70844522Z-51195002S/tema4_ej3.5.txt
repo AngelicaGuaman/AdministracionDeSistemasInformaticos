@@ -1,0 +1,52 @@
+
+3.5 Manejo de volUmenes lOgicos
+
+	Crear un sistema de ficheros ext4 en el volumen lOgico vol1 (el de 7GB). Montar dicho volumen en /mnt y escribir en el un fichero llamado prueba, de al menos 512MB. Detallar los mandatos empleados y contestar a las siguientes preguntas
+
+	Creamos el sistema de ficheros
+	$ sudo mkfs.ext4 /dev/datagroup/vol1
+
+	Montamos el volumen lOgica en /mnt
+	$ sudo mount -t ext4 /dev/datagroup/vol1 /mnt
+
+	$ cd /mnt
+
+	Creamos el fichero de al menos 512MB
+	$ sudo dd if=/dev/zero of=prueba bs=83888 count=1
+
+	1) A la hora de realizar estas operaciones bAsicas ¿Existe alguna diferencia entre un volumen lOgico y una particiOn de disco corriente? En caso afirmativo describir cuales son.
+	
+		No, no existe ninguna diferencia ya que se comportan como un partición normal.
+
+	2) ¿Podemos saber (de forma sencilla) en quE disco fIsico estA almacenado el fichero prueba? ¿Por quE?
+
+		No, porque los volUmenes lOgicos gestionan el espacio de forma dinAmica
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

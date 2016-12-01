@@ -1,0 +1,16 @@
+1.1 Creación de un usuario
+
+Para crear el usuario1 hemos utilizado el mandato adduser y tenemos que entrar como root porque no tenemos los suficientes permisos con practicas:
+
+>> sudo adduser usuario1
+
+Para ver los datos del usuario hemos utilizado cat /etc/passwd, donde el tercer campo es el UID.
+
+¿Cual es su UID?
+En este caso es el 1001.
+
+¿A que grupo pertenece?		//Y si ponemos para este, cat /etc/group, ya que el cat /etc/passwd solo te dice el id del grupo, pero no el grupo
+Pertenece a su propio grupo 1001
+
+¿Cual es el GID de dicho grupo?
+y el GID es el mismo 1001.

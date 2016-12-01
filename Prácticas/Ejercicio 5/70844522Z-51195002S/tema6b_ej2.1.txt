@@ -1,0 +1,14 @@
+Editar los ficheros de configuracion apropiados en la maquina servidora para que
+haga de servidora de NIS solo en la subred que comparte con la maquina cliente, crear
+la base de datos inicial del servidor con /usr/lib/yp/ypinit -m (sin a~nadir servidores
+esclavos) y reiniciar el servicio de NIS. Indicar las modificaciones y mandatos empleados.
+
+Editamos el archivo /etc/yp.conf para indicarque que el servidor somos nosotros mismos
+
+Luego editamos /etc/default/nis para indicarle que nosotros somos el servidor nis:
+	NISSERVER=master NISCLIENT=false
+
+Ahora editamos /etc/ypserv.securenets, este archivo lo podemos tocar para indicar
+que redes permitimos que se conecten a nuestro servidor
+
+	255.255.255.0	192.168.100.0

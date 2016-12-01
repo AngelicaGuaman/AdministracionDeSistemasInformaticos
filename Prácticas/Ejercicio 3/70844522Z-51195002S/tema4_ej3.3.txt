@@ -1,0 +1,19 @@
+
+3.3 CreaciOn del grupo de volUmenes datagroup
+	
+	Usando la herramienta LVM correspondiente, crear un nuevo grupo de volUmenes lOgicos que incluya los tres nuevos discos, llamado datagroup. Indicar el mandato empleado. Una vez creado el grupo, obtener su informaciOn detallada y contestar a las siguientes preguntas, indicando los mandatos usados
+
+	Ejecutamoe el siguiente mandato para crear el grupo datagroup
+	$ sudo vgcreate datagroup /dev/sdg /dev/sgh /dev/sdi
+
+	Para ver la extesiOn fIsica de datagroup
+	$ sudo vgdisplay
+
+	1)	¿Cual es su tamaNo total?
+		VG Size: 14.99 GiB	
+	
+	2)	¿Que opciones de acceso proporciona? 	
+		VG Access: read/write
+
+	3)	¿CuAl es su estado (status)?
+		VG Status: resizable

@@ -1,0 +1,50 @@
+
+3.6 Redimensionamiento de grupos y volUmenes lOgicos
+
+	En este punto deseamos ampliar el tamaNo del vol1 hasta los 14GB. Como no hay espacio suficiente en el grupo datagroup, debemos apagar la mAquina virtual, crear un nuevo disco de al menos 4GB y usarlo.
+	Crear el nuevo disco, localizar su fichero especial el /dev y agregarlo al grupo datagroup. Detallar y explicar los mandatos utilizados. Responder luego a las siguientes preguntas (tema4 ej3.6.txt):
+
+	1) ¿Podemos aNadir directamente el nuevo disco al grupo? No, habrIa que seguir los siguientes pasos
+
+		Con el mandato fdisk podemos ver el tamaño del disco por eso sabemos que se han renombrado los discos.
+		$ sudo fdisk -l
+
+		Primero creamos el volUmen fIsico.
+		$ sudo pvcreate /dev/sdh
+		
+		Seguimiento de los volUmenes fIsicos creados.
+		$ sudo pvdisplay
+
+		ANadimos el nuevo volumen lOgico a datagroup
+		$ sudo vgextend datagroup /dev/sdh
+
+	2) ¿CuAl es el muevo tamaNo del grupo datagroup?
+		$ sudo vgdisplay
+		VG Size: 18.98 GiB
+		
+	A continuaciOn cambiar el tamaNo del volumen vol1 a 14GB e indicar los mandatos utilizados.
+
+		Con el siguiente mandato podemos redimensionar el volumen lOgico
+			$ sudo lvextend -L+7G /dev/datagroup/vol1	
+
+	¿Que ocurre con el sistema de ficheros? 
+
+		Hay que redimensionar el sistema de ficheros por lo que seguimos los siguientes pasos.
+	
+		1)	e2fsck Permite escanear el sistema de archivos de particiones ext2/ext3/ext4 verificando que no existan errores.
+			$ sudo e2fsck -f /dev/datagroup/vol1
+
+		2) redimensionamos
+			$ sudo resize2fs /dev/datagroup/vol1
+
+	¿Que operaciones tenemos realizar para poder ajustar el tamaNo y aprovechar todo el espacio reservado en el volumen lOgico?
+		
+		1)	HabrIa que extender algUn volumen lOgico, ya que nos queda 1G libre, lo podemos ver con vgdisplay
+	
+		2) Redimensionar el sistema de ficheros
+
+
+
+
+	
+

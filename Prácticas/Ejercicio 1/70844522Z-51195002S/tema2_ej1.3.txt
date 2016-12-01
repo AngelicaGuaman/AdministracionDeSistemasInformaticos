@@ -1,0 +1,45 @@
+.3 Gestión básica de permisos
+
+Creamos los 2 ficheros en el escritorio de la siguiente manera:
+
+touch fichero1					
+touch fichero2
+
+a) fichero1 debe pertenecer a practicas 
+
+Ya pertenece al usuario y grupo practicas.
+
+b) fichero2 debe pertenecer a usuario1 
+
+propietario --> sudo chown usuario1 fichero2.
+
+c) practicas debe ser capaz de leer y escribir ambos ficheros 
+
+Practicas puede leer y escribir en fichero1 porque es el propietario.
+
+Practicas puede leer el fichero2, pero no puede escribir y para ello utilizamos el mandado chmod:
+
+>> sudo chmod a+rw fichero2
+
+Donde le damos permisos para que todos puedan escribir en ese fichero.
+
+d) usuario1 deber ser capaz de leer ambos ficheros, pero solo modificar fichero2.
+
+Cambiamos al usuario1 utilizando:
+
+>> su usuario1
+
+Usuario1 puede leer y escribir en fichero2 porque es el propietario, pero el usuario1 no puede escribir en el fichero1 porque en los bits de permisos de grupo solo tiene activo el del lectura, por lo que no hay que hacer nada.
+
+e)fichero1 deber poder ser leido solamente por los usuarios practicas y usuario1 y ningun otro (salvo obviamente root).
+
+Hacemos que fichero1 pertenzca al grupo1:
+
+>> sudo chgrp grupo1 fichero1 
+
+Modificamos los bits "otros usuarios" para que nadie excepto practicas, usuario1 y root puedan leer el fichero:
+ 
+>> sudo chmod 0640 fichero1
+
+De este modo el propietario podrá leer y escribir, el grupo "grupo1" podrá leer, pero otros no podrán hacer nada en el fichero.
+

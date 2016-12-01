@@ -1,0 +1,15 @@
+Lo primero de todo es instalar el paquete nfs-common en el cliente. Sin mas configuracion,
+se puede comprobar que el directorio de home se puede montar desde la maquina cliente.
+Escribir que mandato habria que utilizar para montar el home remoto en un directorio cualquiera
+
+
+-Instalar nfs-common
+	# apt-get install nfs-common
+
+-Comprobar que el directorio home ha sido exportado desde la maquina servidora
+	$ showmount -e 192.168.100.2
+-Creamos el directorio /mnt/nfs:
+$sudo mkdir /mnt/nfs
+
+-Montamos el directorio:	
+# mount 192.168.100.2:/home /mnt/nfs 

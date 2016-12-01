@@ -1,0 +1,50 @@
+
+3.2 ConfiguraciOn de los volUmenes fIsicos
+
+	1)	Para listar todos los dispositivos capaces de ser utilizados como un volumen físico:
+		$ sudo lvmdiskscan
+	
+	2) Se crean los volUmenes fIsicos
+		$ sudo pvcreate /dev/sdg /dev/sdh /dev/sdi
+
+	3)	Puede hacer un seguimiento de los volUmenes fIsicos creados.
+		$ sudo pvdisplay
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

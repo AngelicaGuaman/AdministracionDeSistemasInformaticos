@@ -1,0 +1,16 @@
+Hacer las modificaciones de configuración necesarias en cada máquina para que la configuración sea persistente. Para el caso de la reglas de iptables existen varios procedimientos, siendo uno de los más sencillos la adición de una regla ip a la configuración de la interfaz en /etc/network/interfaces) para invocar los mandatos necesarios.
+
+Para comprobar que el encaminamiento funciona instalar con apt-get install el paquete openssh-server en ambas máquinas.
+
+
+Máquina B
+
+1) modificamos el fichero /etc/network/interfaces
+
+	up route add -net default gw 192.168.100.2 eth1 
+
+	Esta línea es para que cuando arranque la máquina se ejecute la herramienta route para la nueva interfaz de red que se ha creado 
+
+2) instalar 
+	
+	$sudo apt-get install openssh-server

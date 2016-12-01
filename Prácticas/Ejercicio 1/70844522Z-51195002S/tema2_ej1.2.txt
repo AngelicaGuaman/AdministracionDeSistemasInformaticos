@@ -1,0 +1,15 @@
+1.2 Creación de un grupo
+
+Para crear el grupo hemos utilizado el mandato addgroup y como no tenemos los permisos suficientes entramos como root:
+
+>> sudo addgroup grupo1
+
+Y nos dice que tiene el GID 1002.
+
+
+Agregue a dicho grupo los usuarios practicas y usuario1
+
+Para añadir los usuarios practicas y usuario1 al grupo1 podemos modificar el fichero /etc/group añadiendo en el campo 4 los usuarios o podemos utilizar el mandato adduser de la siguiente forma:
+
+>> sudo adduser usuario1 grupo1 
+>> sudo adduser practicas grupo1 

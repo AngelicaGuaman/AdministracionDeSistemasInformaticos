@@ -1,0 +1,4 @@
+
+2.3 Consolidación del RAID
+	Para guardar los datos del nuevo RAID hemos introducido el siguiente comando en modo root:
+	>>mdadm –detail /dev/md0 –brief >> /etc/mdadm/mdadm.conf

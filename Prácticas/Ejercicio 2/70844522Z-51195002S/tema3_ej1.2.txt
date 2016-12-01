@@ -1,0 +1,9 @@
+
+El script nos muestra los ficheros de un directorio que presentan el mismo contenido.
+
+Para dicho script hemos utilizado el mandato "md5sum", que nos devuelve la suma de control de un fichero, esto nos permite identificar ficheros repetidos.
+Son iguales aquellos ficheros que presenten la misma suma de control, a pesar de tener nombres distintos.
+
+Con "sort" agrupamos los ficheros que tengan repetidos su suma de control.
+
+Y con "uniq -w33 -D" comparamos las sumas de control (32 caracteres) y devolvemos por pantalla las suma de control y los nombres de los ficheros que tienen el mismo contenido.

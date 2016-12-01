@@ -1,0 +1,27 @@
+Nos piden que la configuración sea permanente, ya que la del apartado anterior no lo es, porque cuando reiniciemos la máquina se perderá la configuración de esta.
+Para este apartado vamos a modificar el fichero /etc/network/interfaces.
+	
+	$ sudo nano /etc/network/interfaces
+
+1) Añadir líneas de configuración:
+
+	- Para la máquina A
+
+	# eth1 ipv4
+	auto eth1
+	iface eth1 inet static
+	address 192.168.100.2
+	netmask 255.255.255.0
+	network 192.168.100.0	
+
+	- Para la máquina B 
+
+	# eth1 ipv4
+	auto eth1
+	iface eth1 inet static
+	address 192.168.100.3
+	netmask 255.255.255.0
+	network 192.168.100.0	
+
+
+	En este documento tenemos que añadir ip, máscara de red y la red con la palabra static conseguimos que la configuración permanezca después de reiniciar la máquina o apagar.

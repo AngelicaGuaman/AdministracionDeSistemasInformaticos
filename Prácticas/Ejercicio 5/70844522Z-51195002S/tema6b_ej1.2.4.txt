@@ -1,0 +1,14 @@
+Añadir un usuario nuevo en la maquina servidora y crear un fichero dentro del home
+de practicas cuyo propietario sea el nuevo usuario. Al hacer ls -l en el home de
+practicas en la maquina cliente, que nombre de usuario aparece y a que crees que se
+debe?
+
+-En maquina servidora:
+$adduser usuario
+
+-Creacion de fichero en /home/practicas
+$ sudo touch fichero
+
+-Hacer que fichero pertenezca al nuevo usuario
+$ sudo chown usuario fichero
+
